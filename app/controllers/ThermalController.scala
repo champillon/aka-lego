@@ -2,14 +2,17 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 
-import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request}
+import play.api.mvc.{AnyContent, ControllerComponents, Request}
 
 @Singleton
 class ThermalController @Inject()(cc: ControllerComponents)
-  extends AbstractController(cc) {
+  extends BasedController(cc) {
 
   def stamp = Action { request: Request[AnyContent] =>
-    Ok(request.body.asJson.get.toString) as "application/json"
+    if (request.hasBody)
+      success(request.body.asJson.get)
+    else
+      invalidInput
   }
 
 }
