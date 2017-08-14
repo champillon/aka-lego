@@ -4,4 +4,4 @@
 # ~~~~
 
 # An example controller showing a sample home page
-POST    /api/v1/thermal                                 controllers.ThermalController.create
+POST    /api/v1/thermal                                 controllers.ThermalController.stamp
