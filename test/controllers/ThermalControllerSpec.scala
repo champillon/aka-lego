@@ -9,7 +9,7 @@ class ThermalControllerSpec
   extends BasedSpec {
 
   s"POST $CREATE_URL" should {
-    "return created JSON if success" in {
+    "return stamped JSON if success" in {
       val thermal = "42"
 
       val result = route(app, FakeRequest(POST, CREATE_URL)
