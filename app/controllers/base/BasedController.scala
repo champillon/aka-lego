@@ -20,7 +20,7 @@ abstract class BasedController(cc: ControllerComponents)
   protected def as[Object: Manifest](request: Request[AnyContent]): Option[Object] =
     Json.toObject[Object](request.body.asJson.get.toString)
 
-  private def errorHandling(action: Boolean) = {
+  private def errorHandling(action: => Boolean) = {
     try {
       if (action) success
       else fail(CANNOT_MAKE_TRANSACTION)
