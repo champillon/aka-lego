@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 
+import controllers.base.BasedController
 import facades.ThermalFacade
 import forms.ThermalForm
 import models.CreatingThermal
