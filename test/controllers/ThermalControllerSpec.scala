@@ -1,10 +1,13 @@
 package controllers
 
 import bases.BasedSpec
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import play.api.libs.json.Json
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
+@RunWith(classOf[JUnitRunner])
 class ThermalControllerSpec
   extends BasedSpec {
 
