@@ -7,6 +7,7 @@ case class ThermalEntity(id: String
                          , sensorId: String
                          , thermal: Int
                          , created: DateTime)
+  extends BasedEntity
 
 object ThermalEntity {
 
