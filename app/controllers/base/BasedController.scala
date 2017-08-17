@@ -7,8 +7,8 @@ import utilities.Json
 abstract class BasedController(cc: ControllerComponents)
   extends ResultController(cc) {
 
-  protected def form[Form: Manifest](request: Request[AnyContent])
-                                    (action: => Boolean) = {
+  protected def validate[Form: Manifest](request: Request[AnyContent])
+                                        (action: => Boolean) = {
     request match {
       case _ if !request.hasBody => invalidInput(NO_BODY)
       case _ if request.body.asJson.isEmpty => invalidInput(NOT_JSON)

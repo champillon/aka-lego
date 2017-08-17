@@ -14,7 +14,7 @@ class ThermalController @Inject()(cc: ControllerComponents
   extends BasedController(cc) {
 
   def stamp = Action { request: Request[AnyContent] =>
-    form[ThermalForm](request) {
+    validate[ThermalForm](request) {
       facade.stamp(
         CreatingThermal(as[ThermalForm](request).get)
       )
