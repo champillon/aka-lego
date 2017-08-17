@@ -28,6 +28,7 @@ class ThermalControllerSpec
 
       status(result) mustBe OK
       contentType(result) mustBe Some("application/json")
+      contentAsString(result) must include(thermal)
     }
   }
 
