@@ -4,4 +4,4 @@
 # ~~~~
 
 # An example controller showing a sample home page
-POST    /api/v1/thermal                                 controllers.ThermalController.stamp
+POST    /api/v1/fruiting/stamp                      controllers.FruitingController.stamp
