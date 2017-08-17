@@ -3,14 +3,14 @@ package persists
 import javax.inject.{Inject, Singleton}
 
 import base.Exceptions.CannotCreateException
-import entities.ThermalEntity
+import entities.FruitingEntity
 import nb.yoda.orm.PStatement
 import play.api.db.Database
 
 @Singleton
-class ThermalPersist @Inject()(db: Database) {
+class FruitingPersist @Inject()(db: Database) {
 
-  def insert(entity: ThermalEntity): ThermalEntity = db.withConnection { implicit conn =>
+  def insert(entity: FruitingEntity): FruitingEntity = db.withConnection { implicit conn =>
     PStatement(INSERT)
       .setString(entity.sensorId)
       .setInt(entity.thermal)
@@ -23,7 +23,7 @@ class ThermalPersist @Inject()(db: Database) {
 
   private lazy val INSERT =
     """
-      | INSERT INTO thermals(
+      | INSERT INTO fruiting(
       | sensor_id
       | , thermal
       | , created)
