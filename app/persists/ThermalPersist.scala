@@ -2,6 +2,7 @@ package persists
 
 import javax.inject.{Inject, Singleton}
 
+import base.Exceptions.CannotCreateException
 import entities.ThermalEntity
 import nb.yoda.orm.PStatement
 import play.api.db.Database
@@ -16,7 +17,7 @@ class ThermalPersist @Inject()(db: Database) {
       .setDateTime(entity.created)
       .update match {
       case 1 => entity
-      case _ => throw new Exception("transaction fail.")
+      case _ => throw new CannotCreateException(entity)
     }
   }
 
