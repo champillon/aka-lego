@@ -3,15 +3,17 @@ package entities
 import models.CreatingThermal
 import org.joda.time.DateTime
 
-case class ThermalEntity(sensorId: String
+case class ThermalEntity(id: String
+                         , sensorId: String
                          , thermal: Int
                          , created: DateTime)
 
 object ThermalEntity {
 
-  def apply(model: CreatingThermal): ThermalEntity =
+  def apply(model: CreatingThermal, id: String): ThermalEntity =
     ThermalEntity(
-      sensorId = model.sensorId
+      id = id
+      , sensorId = model.sensorId
       , thermal = model.thermal
       , created = model.created
     )
