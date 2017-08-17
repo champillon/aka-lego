@@ -6,8 +6,6 @@ import utilities.Json
 abstract class ResultController(cc: ControllerComponents)
   extends AbstractController(cc) {
 
-  def success = Ok as APPLICATION_JSON
-
   def success(json: Json) = Ok(json.toText) as APPLICATION_JSON
 
   def fail(error: String) = InternalServerError(error)

@@ -8,7 +8,7 @@ abstract class BasedController(cc: ControllerComponents)
   extends ResultController(cc) {
 
   protected def validate[Form: Manifest](request: Request[AnyContent])
-                                        (action: => Boolean) = {
+                                        (action: => Json) = {
     request match {
       case _ if !request.hasBody => invalidInput(NO_BODY)
       case _ if request.body.asJson.isEmpty => invalidInput(NOT_JSON)
@@ -20,10 +20,9 @@ abstract class BasedController(cc: ControllerComponents)
   protected def as[Object: Manifest](request: Request[AnyContent]): Option[Object] =
     Json.toObject[Object](request.body.asJson.get.toString)
 
-  private def errorHandling(action: => Boolean) = {
+  private def errorHandling(action: => Json) = {
     try {
-      if (action) success
-      else fail(CANNOT_MAKE_TRANSACTION)
+      success(action)
     } catch {
       case t: Throwable => {
         t.printStackTrace

@@ -7,6 +7,7 @@ import facades.ThermalFacade
 import forms.ThermalForm
 import models.CreatingThermal
 import play.api.mvc.{AnyContent, ControllerComponents, Request}
+import views.ThermalView
 
 @Singleton
 class ThermalController @Inject()(cc: ControllerComponents
@@ -15,9 +16,9 @@ class ThermalController @Inject()(cc: ControllerComponents
 
   def stamp = Action { request: Request[AnyContent] =>
     validate[ThermalForm](request) {
-      facade.stamp(
+      ThermalView(facade.stamp(
         CreatingThermal(as[ThermalForm](request).get)
-      )
+      ))
     }
   }
 
