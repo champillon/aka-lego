@@ -8,7 +8,7 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
 @RunWith(classOf[JUnitRunner])
-class ThermalControllerSpec
+class FruitingControllerSpec
   extends BasedSpec {
 
   s"POST $CREATE_URL" should {
@@ -32,6 +32,6 @@ class ThermalControllerSpec
     }
   }
 
-  private lazy val CREATE_URL = "/api/v1/thermal"
+  private lazy val CREATE_URL = "/api/v1/fruiting/stamp"
 
 }

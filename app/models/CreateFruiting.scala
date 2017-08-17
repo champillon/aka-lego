@@ -1,16 +1,16 @@
 package models
 
-import forms.ThermalForm
+import forms.FruitingForm
 import org.joda.time.DateTime
 
-case class CreatingThermal(sensorId: String
+case class CreateFruiting(sensorId: String
                           , thermal: Int
                           , created: DateTime)
 
-object CreatingThermal {
+object CreateFruiting {
 
-  def apply(form: ThermalForm): CreatingThermal =
-    CreatingThermal(
+  def apply(form: FruitingForm): CreateFruiting =
+    CreateFruiting(
       sensorId = form.sensorId
       , thermal = form.thermal.toInt
       , created = DateTime.now
