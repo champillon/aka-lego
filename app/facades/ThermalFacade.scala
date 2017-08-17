@@ -11,12 +11,9 @@ import utilities.Uuid
 class ThermalFacade @Inject()(persist: ThermalPersist) {
 
   def stamp(model: CreatingThermal): Thermal = {
-    val entity = ThermalEntity(model, Uuid.get)
-
-    if (persist.insert(entity))
-      Thermal(entity)
-    else
-      throw new Exception("transaction fail.")
+    Thermal(
+      persist.insert(ThermalEntity(model, Uuid.get))
+    )
   }
 
 

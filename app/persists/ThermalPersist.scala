@@ -9,14 +9,14 @@ import play.api.db.Database
 @Singleton
 class ThermalPersist @Inject()(db: Database) {
 
-  def insert(entity: ThermalEntity): Boolean = db.withConnection { implicit conn =>
+  def insert(entity: ThermalEntity): ThermalEntity = db.withConnection { implicit conn =>
     PStatement(INSERT)
       .setString(entity.sensorId)
       .setInt(entity.thermal)
       .setDateTime(entity.created)
       .update match {
-      case 1 => true
-      case _ => false
+      case 1 => entity
+      case _ => throw new Exception("transaction fail.")
     }
   }
 
