@@ -1,6 +1,6 @@
 package controllers.base
 
-import controllers.base.Exceptions.{CANNOT_MAKE_TRANSACTION, INVALID_JSON, NOT_JSON, NO_BODY}
+import base.ControllerMessages.{INVALID_JSON, NOT_JSON, NO_BODY}
 import play.api.mvc.{AnyContent, ControllerComponents, Request}
 import utilities.Json
 
