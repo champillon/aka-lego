@@ -13,14 +13,16 @@ class FruitingControllerSpec
 
   s"POST $CREATE_URL" should {
     "return stamped JSON" in {
-      val thermal = "42"
+      val thermal = 42.2
 
       val result = route(app, FakeRequest(POST, CREATE_URL)
         .withJsonBody(Json.parse(
           s"""
              |{
              | "sensor_id" : "atdkjfadfadfs",
-             | "thermal" : "$thermal"
+             | "thermal" : $thermal,
+             | "humidity": 31.5,
+             | "co2": 11.2
              |}
              | """.stripMargin)
         ))
@@ -28,7 +30,7 @@ class FruitingControllerSpec
 
       status(result) mustBe OK
       contentType(result) mustBe Some("application/json")
-      contentAsString(result) must include(thermal)
+      contentAsString(result) must include(thermal.toString)
     }
   }
 
