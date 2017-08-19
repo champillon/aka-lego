@@ -12,6 +12,7 @@ class FruitingPersist @Inject()(db: Database) {
 
   def insert(entity: FruitingEntity): FruitingEntity = db.withConnection { implicit conn =>
     PStatement(INSERT)
+      .setString(entity.id)
       .setString(entity.sensorId)
       .setDouble(entity.thermal)
       .setDouble(entity.humidity)
@@ -26,13 +27,15 @@ class FruitingPersist @Inject()(db: Database) {
   private lazy val INSERT =
     """
       | INSERT INTO fruiting(
-      | sensor_id
+      | id
+      | , sensor_id
       | , thermal
       | , humidity
       | , co2
       | , created)
       | VALUES(
       | ?
+      | , ?
       | , ?
       | , ?
       | , ?
