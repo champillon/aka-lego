@@ -5,7 +5,9 @@ import org.joda.time.DateTime
 
 case class FruitingEntity(id: String
                           , sensorId: String
-                          , thermal: Int
+                          , thermal: Double
+                          , humidity: Double
+                          , co2: Double
                           , created: DateTime)
   extends BasedEntity
 
@@ -16,6 +18,8 @@ object FruitingEntity {
       id = id
       , sensorId = model.sensorId
       , thermal = model.thermal
+      , humidity = model.humidity
+      , co2 = model.co2
       , created = model.created
     )
 }
