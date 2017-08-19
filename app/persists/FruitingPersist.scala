@@ -13,7 +13,9 @@ class FruitingPersist @Inject()(db: Database) {
   def insert(entity: FruitingEntity): FruitingEntity = db.withConnection { implicit conn =>
     PStatement(INSERT)
       .setString(entity.sensorId)
-      .setInt(entity.thermal)
+      .setDouble(entity.thermal)
+      .setDouble(entity.humidity)
+      .setDouble(entity.co2)
       .setDateTime(entity.created)
       .update match {
       case 1 => entity
@@ -26,9 +28,13 @@ class FruitingPersist @Inject()(db: Database) {
       | INSERT INTO fruiting(
       | sensor_id
       | , thermal
+      | , humidity
+      | , co2
       | , created)
       | VALUES(
       | ?
+      | , ?
+      | , ?
       | , ?
       | , ?);
     """.stripMargin
