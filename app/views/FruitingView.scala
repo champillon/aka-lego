@@ -5,7 +5,9 @@ import utilities.Json
 
 case class FruitingView(id: String
                         , sensorId: String
-                        , thermal: Int)
+                        , thermal: Double
+                        , humidity: Double
+                        , co2: Double)
   extends Json
 
 object FruitingView {
@@ -15,5 +17,7 @@ object FruitingView {
       id = model.id
       , sensorId = model.sensorId
       , thermal = model.thermal
+      , humidity = model.humidity
+      , co2 = model.co2
     )
 }
