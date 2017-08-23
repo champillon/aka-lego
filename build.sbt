@@ -11,6 +11,7 @@ libraryDependencies ++= Seq(
   guice
   , jdbc
   , "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.8.6"
+  , "com.typesafe.scala-logging" %% "scala-logging" % "3.7.1"
   , "org.postgresql" % "postgresql" % "9.4.1211"
   , "nb" %% "yoda-orm" % "1.3.0"
 )

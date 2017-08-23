@@ -1,11 +1,12 @@
 package controllers.base
 
 import base.ControllerMessages.{INVALID_JSON, NOT_JSON, NO_BODY}
-import play.api.mvc.{AnyContent, ControllerComponents, Request}
+import controllers.BasedControllerComponents
+import play.api.mvc.{AnyContent, Request}
 import utilities.Json
 
-abstract class BasedController(cc: ControllerComponents)
-  extends ResultController(cc) {
+abstract class BasedController(bcc: BasedControllerComponents)
+  extends ResultController(bcc) {
 
   protected def validate[Form: Manifest](request: Request[AnyContent])
                                         (action: => Json) = {
@@ -30,5 +31,7 @@ abstract class BasedController(cc: ControllerComponents)
       }
     }
   }
+
+  protected def authenticated = bcc.authenticatedAction
 
 }

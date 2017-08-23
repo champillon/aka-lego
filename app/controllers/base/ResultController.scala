@@ -1,10 +1,11 @@
 package controllers.base
 
-import play.api.mvc.{AbstractController, ControllerComponents}
+import controllers.BasedControllerComponents
+import play.api.mvc.AbstractController
 import utilities.Json
 
-abstract class ResultController(cc: ControllerComponents)
-  extends AbstractController(cc) {
+abstract class ResultController(bcc: BasedControllerComponents)
+  extends AbstractController(bcc) {
 
   def success(json: Json) = Ok(json.toText) as APPLICATION_JSON
 
