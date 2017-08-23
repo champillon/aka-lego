@@ -11,7 +11,7 @@ import play.api.test.Helpers._
 class FruitingControllerSpec
   extends BasedSpec {
 
-  s"POST $CREATE_URL" should {
+  "POST /api/v1/fruiting/stamp" should {
     "return stamped JSON" in {
       val thermal = 42.2
 

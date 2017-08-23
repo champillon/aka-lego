@@ -6,15 +6,14 @@ import controllers.base.BasedController
 import facades.FruitingFacade
 import forms.FruitingForm
 import models.CreateFruiting
-import play.api.mvc.{AnyContent, ControllerComponents, Request}
 import views.FruitingView
 
 @Singleton
-class FruitingController @Inject()(cc: ControllerComponents
+class FruitingController @Inject()(bcc: BasedControllerComponents
                                    , facade: FruitingFacade)
-  extends BasedController(cc) {
+  extends BasedController(bcc) {
 
-  def stamp = Action { request: Request[AnyContent] =>
+  def stamp = authenticated { request =>
     validate[FruitingForm](request) {
       FruitingView(facade.stamp(
         CreateFruiting(as[FruitingForm](request).get)
