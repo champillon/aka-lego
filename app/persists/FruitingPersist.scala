@@ -1,14 +1,22 @@
 package persists
 
+import java.sql.ResultSet
 import javax.inject.{Inject, Singleton}
 
 import base.Exceptions.CannotCreateException
 import entities.FruitingEntity
 import nb.yoda.orm.PStatement
+import nb.yoda.orm.JavaSqlImprovement._
 import play.api.db.Database
 
 @Singleton
 class FruitingPersist @Inject()(db: Database) {
+
+  def selectBySensor(sensorId: String): List[FruitingEntity] = db.withConnection { implicit conn =>
+    PStatement(SELECT_BY_SENSOR)
+      .setString(sensorId: String)
+      .queryList(parse)
+  }
 
   def insert(entity: FruitingEntity): FruitingEntity = db.withConnection { implicit conn =>
     PStatement(INSERT)
@@ -23,6 +31,23 @@ class FruitingPersist @Inject()(db: Database) {
       case _ => throw new CannotCreateException(entity)
     }
   }
+
+  private def parse(rs: ResultSet): FruitingEntity =
+    FruitingEntity(
+      id = rs.getString("id")
+      , sensorId = rs.getString("sensor_id")
+      , thermal = rs.getDouble("thermal")
+      , humidity = rs.getDouble("humidity")
+      , co2 = rs.getDouble("co2")
+      , created = rs.getDateTime("created")
+    )
+
+  private lazy val SELECT_BY_SENSOR =
+    """
+      | SELECT *
+      | FROM fruiting
+      | WHERE sensor_id = ?
+    """.stripMargin
 
   private lazy val INSERT =
     """
