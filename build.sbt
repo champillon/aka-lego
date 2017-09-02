@@ -6,6 +6,7 @@ version := "1.0-SNAPSHOT"
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.12.2"
+resolvers += "Artifactory Public" at "https://artifact.billme.in.th/artifactory/cache/"
 
 libraryDependencies ++= Seq(
   guice
