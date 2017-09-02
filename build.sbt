@@ -1,7 +1,7 @@
 name := "aka-lego"
 organization := "th.pt"
 
-version := "1.0-SNAPSHOT"
+version := "1.0.1"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
