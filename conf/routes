@@ -4,4 +4,5 @@
 # ~~~~
 
 # An example controller showing a sample home page
+GET     /api/v1/fruiting/:sensorId                  controllers.FruitingController.listBySensor(sensorId: String)
 POST    /api/v1/fruiting/stamp                      controllers.FruitingController.stamp
