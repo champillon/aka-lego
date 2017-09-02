@@ -10,11 +10,13 @@ import utilities.Uuid
 @Singleton
 class FruitingFacade @Inject()(persist: FruitingPersist) {
 
-  def stamp(model: CreateFruiting): Fruiting = {
+  def stamp(model: CreateFruiting): Fruiting =
     Fruiting(
       persist.insert(FruitingEntity(model, Uuid.get))
     )
-  }
 
-
+  def listBySensor(sensorId: String): List[Fruiting] =
+    persist
+      .selectBySensor(sensorId)
+      .map(e => Fruiting(e))
 }
