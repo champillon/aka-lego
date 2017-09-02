@@ -1,4 +1,4 @@
-name := "aka-lego"
+name := """aka-lego"""
 organization := "th.pt"
 
 version := "1.0-SNAPSHOT"
