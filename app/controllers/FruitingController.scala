@@ -6,7 +6,7 @@ import controllers.base.BasedController
 import facades.FruitingFacade
 import forms.FruitingForm
 import models.CreateFruiting
-import views.FruitingView
+import views.{FruitingView, FruitingViews}
 
 @Singleton
 class FruitingController @Inject()(bcc: BasedControllerComponents
@@ -18,6 +18,14 @@ class FruitingController @Inject()(bcc: BasedControllerComponents
       FruitingView(facade.stamp(
         CreateFruiting(as[FruitingForm](request).get)
       ))
+    }
+  }
+
+  def listBySensor(sensorId: String) = authenticated { request =>
+    handling {
+      FruitingViews(facade
+        .listBySensor(sensorId)
+        .map(m => FruitingView(m)))
     }
   }
 
