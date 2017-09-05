@@ -47,6 +47,7 @@ class FruitingPersist @Inject()(db: Database) {
       | SELECT *
       | FROM fruiting
       | WHERE sensor_id = ?
+      | ORDER BY created DESC
     """.stripMargin
 
   private lazy val INSERT =
