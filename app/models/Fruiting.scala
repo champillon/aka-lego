@@ -1,12 +1,14 @@
 package models
 
 import entities.FruitingEntity
+import org.joda.time.DateTime
 
 case class Fruiting(id: String
                     , sensorId: String
                     , thermal: Double
                     , humidity: Double
-                    , co2: Double)
+                    , co2: Double
+                    , created: DateTime)
 
 object Fruiting {
 
@@ -17,5 +19,6 @@ object Fruiting {
       , thermal = entity.thermal
       , humidity = entity.humidity
       , co2 = entity.co2
+      , created = entity.created
     )
 }
