@@ -1,9 +1,13 @@
 package utilities
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include
-import com.fasterxml.jackson.databind.{DeserializationFeature, JsonNode, ObjectMapper, PropertyNamingStrategy}
+import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.databind._
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 
 trait Json {
 
@@ -19,6 +23,7 @@ object Json {
 
   private val mapper = new ObjectMapper with ScalaObjectMapper
   mapper.registerModule(DefaultScalaModule)
+  mapper.registerModule(JodaJacksonModule)
   mapper.setSerializationInclusion(Include.NON_NULL)
   mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
   mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -51,3 +56,26 @@ object Json {
   }
 
 }
+
+object JodaJacksonModule
+  extends SimpleModule {
+
+  private val format = "yyyy-MM-dd HH:mm:ss"
+  private val dtf = DateTimeFormat.forPattern(format)
+
+  addDeserializer(classOf[DateTime], new JsonDeserializer[DateTime] {
+    override def deserialize(parser: JsonParser
+                             , context: DeserializationContext): DateTime = {
+      dtf.parseDateTime(parser.getText)
+    }
+  })
+
+  addSerializer(classOf[DateTime], new JsonSerializer[DateTime] {
+    override def serialize(value: DateTime
+                           , generator: JsonGenerator
+                           , serializers: SerializerProvider): Unit = {
+      generator.writeString(dtf.print(value))
+    }
+  })
+}
+
