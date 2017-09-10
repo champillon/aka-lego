@@ -1,7 +1,7 @@
 package views
 
 import models.Fruiting
-import org.joda.time.LocalDateTime
+import org.joda.time.DateTime
 import utilities.Json
 
 case class FruitingView(id: String
@@ -9,7 +9,7 @@ case class FruitingView(id: String
                         , thermal: Double
                         , humidity: Double
                         , co2: Double
-                        , created: LocalDateTime)
+                        , created: DateTime)
   extends Json
 
 object FruitingView {
@@ -21,6 +21,6 @@ object FruitingView {
       , thermal = model.thermal
       , humidity = model.humidity
       , co2 = model.co2
-      , created = model.created.toLocalDateTime
+      , created = model.created
     )
 }
