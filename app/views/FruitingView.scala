@@ -1,7 +1,7 @@
 package views
 
 import models.Fruiting
-import org.joda.time.DateTime
+import org.joda.time.{DateTime, DateTimeZone}
 import utilities.Json
 
 case class FruitingView(id: String
@@ -21,6 +21,6 @@ object FruitingView {
       , thermal = model.thermal
       , humidity = model.humidity
       , co2 = model.co2
-      , created = model.created
+      , created = model.created.withZone(DateTimeZone.forID("Asia/Bangkok"))
     )
 }
