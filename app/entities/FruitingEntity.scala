@@ -8,6 +8,7 @@ case class FruitingEntity(id: String
                           , thermal: Double
                           , humidity: Double
                           , co2: Double
+                          , uv: Double
                           , created: DateTime)
   extends BasedEntity
 
@@ -20,6 +21,7 @@ object FruitingEntity {
       , thermal = model.thermal
       , humidity = model.humidity
       , co2 = model.co2
+      , uv = model.uv
       , created = model.created
     )
 }

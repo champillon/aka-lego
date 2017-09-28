@@ -7,6 +7,7 @@ case class CreateFruiting(sensorId: String
                           , thermal: Double
                           , humidity: Double
                           , co2: Double
+                          , uv: Double
                           , created: DateTime)
 
 object CreateFruiting {
@@ -17,6 +18,7 @@ object CreateFruiting {
       , thermal = form.thermal
       , humidity = form.humidity
       , co2 = form.co2
+      , uv = form.uv
       , created = DateTime.now
     )
 }

@@ -8,6 +8,7 @@ case class Fruiting(id: String
                     , thermal: Double
                     , humidity: Double
                     , co2: Double
+                    , uv: Double
                     , created: DateTime)
 
 object Fruiting {
@@ -19,6 +20,7 @@ object Fruiting {
       , thermal = entity.thermal
       , humidity = entity.humidity
       , co2 = entity.co2
+      , uv = entity.uv
       , created = entity.created
     )
 }

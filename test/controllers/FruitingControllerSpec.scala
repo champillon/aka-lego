@@ -22,7 +22,8 @@ class FruitingControllerSpec
              | "sensor_id" : "atdkjfadfadfs",
              | "thermal" : $thermal,
              | "humidity": 31.5,
-             | "co2": 11.2
+             | "co2": 11.2,
+             | "uv": 12.2
              |}
              | """.stripMargin)
         ))

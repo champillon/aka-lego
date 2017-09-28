@@ -7,6 +7,7 @@ CREATE TABLE fruiting
     thermal                     REAL,
     humidity                    REAL,
     co2                         REAL,
+    uv                          REAL,
     created                     TIMESTAMP WITH TIME ZONE NOT NULL,
     CONSTRAINT  fruiting_pk PRIMARY KEY (id)
 );

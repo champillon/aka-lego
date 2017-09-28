@@ -5,8 +5,8 @@ import javax.inject.{Inject, Singleton}
 
 import base.Exceptions.CannotCreateException
 import entities.FruitingEntity
-import nb.yoda.orm.PStatement
 import nb.yoda.orm.JavaSqlImprovement._
+import nb.yoda.orm.PStatement
 import play.api.db.Database
 
 @Singleton
@@ -25,6 +25,7 @@ class FruitingPersist @Inject()(db: Database) {
       .setDouble(entity.thermal)
       .setDouble(entity.humidity)
       .setDouble(entity.co2)
+      .setDouble(entity.uv)
       .setDateTime(entity.created)
       .update match {
       case 1 => entity
@@ -39,6 +40,7 @@ class FruitingPersist @Inject()(db: Database) {
       , thermal = rs.getDouble("thermal")
       , humidity = rs.getDouble("humidity")
       , co2 = rs.getDouble("co2")
+      , uv = rs.getDouble("uv")
       , created = rs.getDateTime("created")
     )
 
@@ -58,9 +60,11 @@ class FruitingPersist @Inject()(db: Database) {
       | , thermal
       | , humidity
       | , co2
+      | , uv
       | , created)
       | VALUES(
       | ?
+      | , ?
       | , ?
       | , ?
       | , ?
