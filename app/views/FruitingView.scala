@@ -9,6 +9,7 @@ case class FruitingView(id: String
                         , thermal: Double
                         , humidity: Double
                         , co2: Double
+                        , uv: Double
                         , created: DateTime)
   extends Json
 
@@ -21,6 +22,7 @@ object FruitingView {
       , thermal = model.thermal
       , humidity = model.humidity
       , co2 = model.co2
+      , uv = model.uv
       , created = model.created.withZone(DateTimeZone.forID("Asia/Bangkok"))
     )
 }
